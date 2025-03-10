@@ -1,0 +1,14 @@
+{
+  "name": "swc-flattening",
+  "type": "module",
+  "private": true,
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@swc/core": "^1.11.8",
+    "@swc/plugin-styled-jsx": "^7.0.0",
+    "react": "^19.0.0",
+    "styled-jsx": "^5.1.6"
+  }
+}
