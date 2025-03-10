@@ -47,15 +47,11 @@ async function compileFile() {
     const classId = idMatch ? idMatch[1] : null;
     
     if (classId) {
-      console.log('\n💅 Extracted CSS (Formatted without class hashes):');
-      console.log('---------------------------------------------');
+      console.log('\n💅 Processed CSS:');
+      console.log('---------------');
       
-      // For complicated CSS, we'll highlight the differences by showing:
-      // 1. The original CSS with classnames
-      // 2. What the compiled CSS would look like with classnames removed
-
       // Format the original CSS with classnames for better readability
-      const originalCssWithClassNames = rawCss
+      const formattedCss = rawCss
         .split('}')
         .map(ruleset => {
           if (!ruleset.trim()) return '';
@@ -85,24 +81,7 @@ async function compileFile() {
         .filter(Boolean)
         .join('\n\n');
       
-      // Now create a "cleaned" version without the class hashes
-      const cleanedCss = originalCssWithClassNames.replace(
-        new RegExp(`.jsx-${classId}`, 'g'), 
-        ''
-      );
-      
-      console.log(cleanedCss);
-      
-      console.log('\n🏷️  Original CSS (With Class Hashes):');
-      console.log('--------------------------------');
-      console.log(originalCssWithClassNames);
-      
-      console.log('\n📝 Key Differences:');
-      console.log('----------------');
-      console.log(`1. Class hash '.jsx-${classId}' is added to all selectors for scoping`);
-      console.log('2. Some CSS nesting is flattened (like .container .inner-class)');
-      console.log('3. Some nested syntax is not properly processed (the nested div)');
-      console.log(`4. Vendor prefixes are added (-webkit, -moz) for cross-browser compatibility`);
+      console.log(formattedCss);
     }
   }
 }
